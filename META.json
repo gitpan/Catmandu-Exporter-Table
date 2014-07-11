@@ -4,7 +4,7 @@
       "Jakob Voß"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Dist::Milla version v1.0.5, Dist::Zilla version 5.019, CPAN::Meta::Converter version 2.132830",
+   "generated_by" : "Dist::Milla version v1.0.5, Dist::Zilla version 5.019, CPAN::Meta::Converter version 2.141520",
    "license" : [
       "perl_5"
    ],
@@ -36,7 +36,7 @@
       },
       "runtime" : {
          "requires" : {
-            "Catmandu" : "0.9",
+            "Text::MarkdownTable" : "v0.2.1",
             "perl" : "v5.10.0"
          }
       }
@@ -53,7 +53,7 @@
          "web" : "https://github.com/nichtich/Catmandu-Exporter-Table"
       }
    },
-   "version" : "0.1.2",
+   "version" : "0.2.0",
    "x_contributors" : [
       "Jakob Voss <voss@gbv.de>"
    ]

@@ -1,3 +1,6 @@
+0.2.0  2014-07-11 10:20:47 CEST
+    - moved core parts to Text::MarkdownTable, renamed 
+
 0.1.2  2014-06-25 11:23:48 CEST
     - better align with Catmandu::Exporter::CSV
 

@@ -16,28 +16,32 @@ SYNOPSIS
       | 42 | bar  |
       | 99 | doz  |
 
+
+      #!/usr/bin/env perl
+      use Catmandu::Exporter::Table;
+      my $exp = Catmandu::Exporter::Table->new;
+      $exp->add({ title => "The Hobbit", author => "Tolkien" });
+      $exp->add({ title => "Where the Wild Things Are", author => "Sendak" });
+      $exp->add({ title => "One Thousand and One Nights" });
+      $exp->commit;
+
+      | author  | title                       |
+      |---------|-----------------------------|
+      | Tolkien | The Hobbit                  |
+      | Sendak  | Where the Wild Things Are   |
+      |         | One Thousand and One Nights |
+
 DESCRIPTION
     This Catmandu::Exporter exports data in tabular form, formatted in
-    MultiMarkdown syntax. The resulting format can be used for instance to
-    display CSV data or to include data tables in Markdown files. Newlines
-    and vertical bars in table cells are replaced by a space character and
-    cell values can be truncated.
+    MultiMarkdown syntax. The module delegates to Text::MarkdownTable, so
+    see the latter for more documentation.
 
 CONFIGURATION
-    fields
-        Array, hash reference, or comma-separated list of fields/columns.
+    Table output can be controlled with the options "fields", "columns",
+    "widths", and "condense".
 
-    header
-        Column names. By default field names are used.
-
-    widths
-        Column widths. By default column widths are calculated automatically
-        to the width of the widest value. With custom width, large values
-        may be truncated.
-
-METHODS
-    See Catmandu::Exporter, Catmandu::Addable, Catmandu::Fixable,
-    Catmandu::Counter, and Catmandu::Logger for a full list of methods.
+    See Catmandu::Exporter for additional exporter and methods ("file",
+    "fh", "encoding", "fix"..., "add", "commit"...).
 
 SEE ALSO
     Catmandu::Exporter::CSV
