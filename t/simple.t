@@ -2,17 +2,14 @@ use strict;
 use warnings;
 use Test::More;
 
-BEGIN {
-    use_ok 'Catmandu::Exporter::Table';
-}
+BEGIN { use_ok 'Catmandu::Exporter::Table'; }
 require_ok 'Catmandu::Exporter::Table';
 
 my ($got, $expect);
 
 sub export_table(@) {
-    my (%config) = @_;
+    my ($data, %config) = @_;
     $got = "";
-    my $data = delete $config{data};
     my $exporter = Catmandu::Exporter::Table->new(%config, file => \$got);
     isa_ok $exporter, 'Catmandu::Exporter::Table';
     $exporter->add($_) for @$data;
@@ -20,10 +17,9 @@ sub export_table(@) {
     is($exporter->count, scalar @$data, "Count ok");
 }
 
-export_table
-    data => [{'a' => 'moose', b => '1'}, 
-             {'a' => "p\nony", b => '2'}, 
-             {'a' => 'shr|mp', b => '3'}];
+export_table [{'a' => 'moose', b => '1'}, 
+              {'a' => "p\nony", b => '2'}, 
+              {'a' => 'shr|mp', b => '3'}];
 
 $expect = <<TABLE;
 | a      | b |
@@ -36,9 +32,8 @@ TABLE
 is($got, $expect, "MultiMarkdown format ok");
  
 
-export_table
-    fields => { a => 'Longname', x => 'X' },
-    data => [ { a => 'Hello', b => 'World' } ];
+export_table [ { a => 'Hello', b => 'World' } ],
+             fields => { a => 'Longname', x => 'X' };
 $expect = <<TABLE;
 | Longname | X |
 |----------|---|
@@ -47,9 +42,8 @@ TABLE
 is $got, $expect, 'custom column names as HASH';
 
 
-export_table
-    data => [ { a => 'Hi', b => 'World', c => 'long value' } ],
-    widths => '5,3,6';
+export_table [ { a => 'Hi', b => 'World', c => 'long value' } ],
+             widths => '5,3,6';
 $expect = <<TABLE;
 | a     | b   | c      |
 |-------|-----|--------|

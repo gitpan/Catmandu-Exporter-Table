@@ -33,16 +33,38 @@ SYNOPSIS
 
 DESCRIPTION
     This Catmandu::Exporter exports data in tabular form, formatted in
-    MultiMarkdown syntax. The module delegates to Text::MarkdownTable, so
-    see the latter for more documentation.
+    MultiMarkdown syntax.
+
+    The output can be used for simple display, for instance to preview Excel
+    files on the command line. Use Pandoc
+    <http://johnmacfarlane.net/pandoc/> too further convert to other table
+    formats, e.g. "latex", "html5", "mediawiki":
+
+        catmandu convert XLS to Table < sheet.xls | pandoc -t html5
 
 CONFIGURATION
     Table output can be controlled with the options "fields", "columns",
-    "widths", and "condense".
+    "widths", and "condense" as documented in Text::MarkdownTable. The
+    additional option "schema" can be used to supply fields and (optionally)
+    columns in a JSON Table Schema
+    <http://dataprotocols.org/json-table-schema/>. The schema is a JSON file
+    or HASH reference having the following structure:
 
+      {
+        "fields: [
+          { "name": "field-name-1", "title": "column title 1 (optional)" },
+          { "name": "field-name-2", "title": "column title 2 (optional)" },
+          ...
+        ]
+      }
+
+    Without "fields" or "schema", columns are sorted alphabetically by field
+    name.
+
+METHODS
     See Catmandu::Exporter for additional exporter and methods ("file",
     "fh", "encoding", "fix"..., "add", "commit"...).
 
 SEE ALSO
-    Catmandu::Exporter::CSV
+    Text::MarkdownTable, Catmandu::Exporter::CSV
 

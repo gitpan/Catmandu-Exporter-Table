@@ -21,12 +21,14 @@ no_index:
     - eg
     - examples
 requires:
-  Text::MarkdownTable: v0.2.1
+  Catmandu: '0.92'
+  IO::Handle::Util: '0.01'
+  Text::MarkdownTable: v0.2.3
   perl: v5.10.0
 resources:
   bugtracker: https://github.com/nichtich/Catmandu-Exporter-Table/issues
   homepage: https://github.com/nichtich/Catmandu-Exporter-Table
   repository: https://github.com/nichtich/Catmandu-Exporter-Table.git
-version: 0.2.0
+version: 0.2.1
 x_contributors:
   - 'Jakob Voss <voss@gbv.de>'
